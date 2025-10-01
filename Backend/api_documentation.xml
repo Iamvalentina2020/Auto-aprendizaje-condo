@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apiDocumentation>
+  <title>API Backend Autos</title>
+  <description>
+    Esta API permite gestionar autos usando patrones de diseño y arquitectura MVC. Es consumible desde una UI web (por ejemplo, React).
+  </description>
+  <usage>
+    <step>Instala dependencias con <code>uv sync</code></step>
+    <step>Inicia el servidor con <code>uvicorn app.main:app --reload</code></step>
+    <step>Accede a la documentación interactiva en <code>http://localhost:8000/docs</code></step>
+  </usage>
+  <endpoints>
+    <endpoint>
+      <method>POST</method>
+      <path>/autos</path>
+      <description>Crea un auto nuevo.</description>
+      <requestExample>
+        <marca>Toyota</marca>
+        <modelo>Corolla</modelo>
+        <color>Rojo</color>
+        <tipo>sedan</tipo>
+        <decoradores>
+          <decorador>sunroof</decorador>
+          <decorador>sport</decorador>
+        </decoradores>
+      </requestExample>
+      <responseExample>
+        <id>1</id>
+      </responseExample>
+    </endpoint>
+    <endpoint>
+      <method>GET</method>
+      <path>/autos</path>
+      <description>Lista todos los autos registrados.</description>
+      <responseExample>
+        <auto>
+          <id>1</id>
+          <descripcion>Toyota Corolla (Rojo) + Sunroof + Sport Package</descripcion>
+          <precio>23700.0</precio>
+          <marca>Toyota</marca>
+          <modelo>Corolla</modelo>
+          <color>Rojo</color>
+        </auto>
+      </responseExample>
+    </endpoint>
+    <endpoint>
+      <method>GET</method>
+      <path>/autos/{id}</path>
+      <description>Obtiene los datos de un auto por su ID.</description>
+      <responseExample>
+        <id>1</id>
+        <descripcion>Toyota Corolla (Rojo) + Sunroof + Sport Package</descripcion>
+        <precio>23700.0</precio>
+        <marca>Toyota</marca>
+        <modelo>Corolla</modelo>
+        <color>Rojo</color>
+      </responseExample>
+    </endpoint>
+    <endpoint>
+      <method>PUT</method>
+      <path>/autos/{id}</path>
+      <description>Actualiza los datos de un auto.</description>
+      <requestExample>
+        <color>Azul</color>
+      </requestExample>
+      <responseExample>
+        <success>true</success>
+      </responseExample>
+    </endpoint>
+    <endpoint>
+      <method>DELETE</method>
+      <path>/autos/{id}</path>
+      <description>Elimina un auto del sistema.</description>
+      <responseExample>
+        <success>true</success>
+      </responseExample>
+    </endpoint>
+    <endpoint>
+      <method>POST</method>
+      <path>/autos/{id}/restore/{version}</path>
+      <description>Restaura el estado anterior de un auto usando memento.</description>
+      <responseExample>
+        <success>true</success>
+      </responseExample>
+    </endpoint>
+  </endpoints>
+  <notes>
+    <note>Todos los endpoints devuelven respuestas en formato JSON.</note>
+    <note>La UI web puede consumir la API usando fetch o Axios.</note>
+    <note>La documentación interactiva Swagger está disponible en <code>/docs</code>.</note>
+  </notes>
+</apiDocumentation>
